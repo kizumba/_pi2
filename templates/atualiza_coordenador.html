@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block conteudo %}
+    <h1 align="center">Atualizar Coordenador</h1>
+    <hr>
+    <form action="{{url_for('atualiza_coordenador', id=coordenador.id)}}" method="post">
+        <div class="form-group">
+            <label for="nome">Digite o NOME do coordenador</label>
+            <input class="form-control" id="nome" type="text" name="nome" value="{{coordenador.nome}}" required>
+            <label for="senha">Digite a SENHA do coordenador</label>
+            <input class="form-control" id="senha" type="password" name="senha" value="{{coordenador.senha}}" required>
+            <label for="email">Digite a E-MAIL do coordenador</label>
+            <input class="form-control" id="email" type="text" name="email" value="{{coordenador.email}}" required>
+        </div>
+        <button class="btn btn-primary">Salvar</button>
+    </form> 
+{% endblock conteudo %}

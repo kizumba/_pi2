@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block conteudo %}
+    <h1 align="center">Atualizar Usuário</h1>
+    <hr>
+    <form action="{{url_for('atualiza_usuario',id=usuario.id)}}" method="post">
+        <div class="form-group">
+            <label for="nome">Digite o NOME do usuário</label>
+            <input class="form-control" id="nome" type="text" name="nome" value="{{usuario.nome}}" required>
+            <label for="senha">Digite a SENHA do usuário</label>
+            <input class="form-control" id="senha" type="password" name="senha" value="{{usuario.senha}}" required>
+            <label for="email">Digite a E-MAIL do usuário</label>
+            <input class="form-control" id="email" type="text" name="email" value="{{usuario.email}}" required>
+        </div>
+        <button class="btn btn-primary">Salvar</button>
+    </form>
+{% endblock conteudo %}

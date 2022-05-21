@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block conteudo %}
+    <h1 align="center">Cadastrar Usuário</h1>
+    <hr>
+    <form action="{{url_for('cadastrar_usuario')}}" method="post">
+        <div class="form-group">
+            <!-- <label for="id">Digite o ID do usuário</label>
+            <input class="form-control" id="id" type="text" name="id" required> -->
+            <label for="nome">Digite o NOME do usuário</label>
+            <input class="form-control" id="nome" type="text" name="nome" required>
+            <label for="senha">Digite a SENHA do usuário</label>
+            <input class="form-control" id="senha" type="password" name="senha" required>
+            <label for="email">Digite a E-MAIL do usuário</label>
+            <input class="form-control" id="email" type="text" name="email" required>
+        </div>
+        <button class="btn btn-primary">Cadastrar</button>
+    </form>
+{% endblock conteudo %}

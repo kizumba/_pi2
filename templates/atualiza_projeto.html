@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block conteudo %}
+    <h1 align="center">Atualizar Projeto</h1>
+    <hr>
+    <form action="{{url_for('atualiza_projeto', id=projeto.id)}}" method="post">
+        <div class="form-group">
+            <label for="nome">Digite o NOME do Projeto</label>
+            <input class="form-control" id="nome" type="text" name="nome" value="{{projeto.nome}}" required>
+        </div>
+        <button class="btn btn-primary">Salvar</button>
+    </form>
+{% endblock conteudo %}

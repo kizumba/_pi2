@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block conteudo %}
+    <h1 align="center">Cadastrar Grupo</h1>
+    <hr>
+    <form action="{{url_for('cadastrar_grupo')}}" method="post">
+        <div class="form-group">
+            <label for="dia">Digite o dia da semana para reunião</label>
+            <input class="form-control" id="dia" type="text" name="dia" required>
+            <label for="hora">Digite a hora da reunião</label>
+            <input class="form-control" id="hora" type="text" name="hora" required>            
+            
+            <label for="projeto">Digite o número do projeto do grupo</label>
+            <input class="form-control" id="projeto" type="number" name="projeto" value="1" required>
+            <label for="coordenador">Digite o número do coordenador do grupo</label>
+            <input class="form-control" id="coordenador" type="number" name="coordenador" value="1" required>
+        </div>
+        <button class="btn btn-primary">Cadastrar</button>
+    </form>
+{% endblock conteudo %}

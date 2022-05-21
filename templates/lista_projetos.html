@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block conteudo %}
+    <h1 align="center">Lista de Projetos</h1>
+    <hr>  
+    <a href="{{url_for('cadastrar_projeto')}}" class="btn btn-secondary">Cadastrar Projeto</a>
+    <table class="table table-bordered table-hover">
+        <thead class="table-dark">
+            <th scope="col">ID</th>
+            <th scope="col">Nome</th>
+            <th scope="col">Ações</th>
+        </thead>
+        <tbody>
+            {% for projeto in projetos %}
+                <tr>
+                    <td>{{projeto.id}}</td>
+                    <td>{{projeto.nome}}</td>
+                    <td>                        
+                        <a href="{{projeto.id}}/atualiza_projeto" class="btn btn-secondary btn-xs">Editar</a>
+                        <a href="{{projeto.id}}/excluir_projeto" onclick="return confirm('Deseja exlcuir esse registro?')" class="btn btn-danger btn-xs">Excluir</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock conteudo %}

@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block conteudo %}
+    <h1 align="center">Entrar</h1>
+    <hr>
+    <form action="{{url_for('index')}}" method="post">
+        <div class="form-group">
+            <label for="usuario">Digite seu usuário</label>
+            <input class="form-control" id="usuario" type="text" name="usuario" required>
+            <label for="senha">Digite sua Senha</label>
+            <input class="form-control" id="senha" type="password" name="senha" required>
+        </div>
+        <button class="btn btn-primary">Entrar</button>
+    </form>
+{% endblock conteudo %}

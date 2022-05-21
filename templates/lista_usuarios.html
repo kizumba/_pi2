@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block conteudo %}
+    <h1 align="center">Lista de Usuários</h1>
+    <hr>  
+    <a href="{{url_for('cadastrar_usuario')}}" class="btn btn-secondary">Cadastrar Usuário</a>
+    <table class="table table-bordered table-hover">
+        <thead class="table-dark">
+            <th scope="col">ID</th>
+            <th scope="col">Nome</th>
+            <th scope="col">E-mail</th>
+            <th scope="col">Tipo</th>
+            <th scope="col">Ações</th>
+        </thead>
+        <tbody>
+            {% for usuario in usuarios %}
+                <tr>
+                    <td>{{usuario.id}}</td>
+                    <td>{{usuario.nome}}</td>
+                    <td>{{usuario.email}}</td>
+                    <td>{{usuario.tipo_usuario}}</td>
+                    <td>
+                        <a href="{{usuario.id}}/atualiza_usuario" class="btn btn-secondary btn-xs">Editar</a>
+                        <a href="{{usuario.id}}/excluir_usuario" onclick="return confirm('Deseja exlcuir esse registro?')" class="btn btn-danger btn-xs">Excluir</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock conteudo %}

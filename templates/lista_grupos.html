@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block conteudo %}
+    <h1 align="center">Lista de Grupos</h1>
+    <hr>  
+    <a href="{{url_for('cadastrar_grupo')}}" class="btn btn-secondary">Cadastrar Grupo</a>
+    <table class="table table-bordered table-hover">
+        <thead class="table-dark">
+            <th scope="col">Número do grupo</th>
+            <th scope="col">Coordenador</th>
+            <th scope="col">Número do Projeto</th>
+            <th scope="col">Dia de reunião</th>
+            <th scope="col">Horário da reunião</th>
+            <th scope="col">Lista de alunos</th>
+            <th scope="col">Ações</th>
+        </thead>
+        <tbody>
+            {% for grupo in grupos %}
+                <tr>
+                    <td>{{grupo.id}}</td>
+                    <td>{{grupo.coordenador}}</td>
+                    <td>{{grupo.projeto_id}}</td>
+                    <td>{{grupo.dia}}</td>
+                    <td>{{grupo.hora}}</td>
+                    <td>
+                        {% for aluno in grupo.alunos %}
+                            {{aluno.nome}} RA:{{aluno.ra}}<br>
+                        {% endfor %}
+                    </td>
+                    <td>
+                        <a href="{{grupo.id}}/atualiza_grupo" class="btn btn-secondary btn-xs">Editar</a>
+                        <a href="{{grupo.id}}/excluir_grupo" onclick="return confirm('Deseja exlcuir esse registro?')" class="btn btn-danger btn-xs">Excluir</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock conteudo %}
+
+
+        

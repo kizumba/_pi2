@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block conteudo %}
+    <h1 align="center">Atualizar Aluno</h1>
+    <hr>
+    <form action="{{url_for('atualiza_aluno', ra=aluno.ra)}}" method="post">
+        <div class="form-group">
+            <label for="nome">Digite o nome do aluno</label>
+            <input class="form-control" id="nome" type="text" name="nome" value="{{aluno.nome}}" required>
+            <label for="senha">Digite a senha do aluno</label>
+            <input class="form-control" id="senha" type="password" name="senha" value="{{aluno.senha}}" required>
+            <label for="curso">Digite o curso do aluno</label>
+            <input class="form-control" id="curso" type="text" name="curso" value="{{aluno.curso}}" required>
+            <label for="polo">Digite o polo do aluno</label>
+            <input class="form-control" id="polo" type="text" name="polo" value="{{aluno.polo}}" required>
+            <label for="projeto">Digite o Nº do projeto do aluno</label>
+            <input class="form-control" id="projeto" type="number" max="5" min="1"  name="projeto" value="{{aluno.projeto_id}}" required>
+            <label for="grupo">Digite o número do grupo do aluno</label>
+            <input class="form-control" id="grupo" type="number" max="5" min="1"  name="grupo" value="{{aluno.grupo_id}}" required>
+            <label for="interesse">Digite o interesse acadêmico do aluno</label>
+            <input class="form-control" id="interesse" type="text" name="interesse" value="{{aluno.interesse}}" required>
+            <label for="hobby">Digite o gosto pessoal do aluno</label>
+            <input class="form-control" id="hobby" type="text" name="hobby" value="{{aluno.hobby}}" required>
+            <label for="telefone">Digite o telefone do aluno</label>
+            <input class="form-control" id="telefone" type="text" name="telefone" value="{{aluno.telefone}}" required>
+            <label for="email">Digite o email do aluno</label>
+            <input class="form-control" id="email" type="text" name="email" value="{{aluno.email}}" required>
+        </div>
+        <button class="btn btn-primary">Salvar</button>
+    </form>
+{% endblock conteudo %}

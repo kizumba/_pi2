@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block conteudo %}
+    <h1 align="center">Lista de Alunos</h1>
+    <hr>  
+    <a href="{{url_for('cadastrar_aluno')}}" class="btn btn-secondary">Cadastrar Aluno</a>
+    <table class="table table-bordered table-hover">
+        <thead class="table-dark">
+            <!-- <th scope="col">RA</th> -->
+            <th scope="col">Nome</th>
+            <th scope="col">E-mail</th>
+            <th scope="col">Curso</th>
+            <th scope="col">Polo</th>
+            <th scope="col">Projeto</th>
+            <th scope="col">Interesse</th>
+            <th scope="col">Hobby</th>
+            <th scope="col">Telefone</th>
+            <th scope="col">Grupo</th>
+            <th scope="col">Ações</th>
+        </thead>
+        <tbody>
+            {% for aluno in alunos %}
+                <tr>
+                    <!-- <td>{{aluno.ra}}</td> -->
+                    <td>{{aluno.nome}}</td>
+                    <td>{{aluno.email}}</td>
+                    <td>{{aluno.curso}}</td>
+                    <td>{{aluno.polo}}</td>
+                    <td>{{aluno.projeto_id}}</td>
+                    <td>{{aluno.interesse}}</td>
+                    <td>{{aluno.hobby}}</td>
+                    <td>{{aluno.telefone}}</td>
+                    <td>{{aluno.grupo_id}}</td>
+                    <td>
+                        <a href="{{aluno.ra}}/atualiza_aluno" class="btn btn-secondary btn-xs">Editar</a>
+                        <a href="{{aluno.ra}}/excluir_aluno" onclick="return confirm('Deseja exlcuir esse registro?')" class="btn btn-danger btn-xs">Excluir</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock conteudo %}

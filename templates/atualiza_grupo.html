@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block conteudo %}
+    <h1 align="center">Atualizar Grupo</h1>
+    <hr>
+    <form action="{{url_for('atualiza_grupo', id=grupo.id)}}" method="post">
+        <div class="form-group">
+            <label for="dia">Digite o dia da semana para reunião</label>
+            <input class="form-control" id="dia" type="text" name="dia" value="{{grupo.dia}}" required>
+            <label for="hora">Digite a hora da reunião</label>
+            <input class="form-control" id="hora" type="text" name="hora" value="{{grupo.hora}}" required>            
+            <label for="projeto">Digite o número do projeto do grupo</label>
+            <input class="form-control" id="projeto" type="number" name="projeto" value="{{grupo.projeto_id}}" required>
+            <label for="coordenador">Digite o número do coordenador do grupo</label>
+            <input class="form-control" id="coordenador" type="number" name="coordenador" value="{{grupo.coordenador}}" required>
+        </div>
+        <button class="btn btn-primary">Salvar</button>
+    </form>
+{% endblock conteudo %}
