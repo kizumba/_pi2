@@ -1,1 +1,1 @@
-web: gunicorn _pi2:app
+web: gunicorn app:app

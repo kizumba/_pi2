@@ -6,6 +6,8 @@ from sqlalchemy import ForeignKey
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///projeto2.sqlite3'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['SECRET_KEY'] = 'teste$%#'
+
 db = SQLAlchemy(app)
 
 
@@ -332,12 +334,6 @@ def entrar():
 def sair():
     return render_template('sair.html')
 
-#FUNÇÕES AUXILIARES
-def total_grupos():
-    total = grupos.query.all()
-    return len(total)
-
-
 if __name__=='__main__':
     db.create_all()
-    app.run(debug=True)
+    app.run(debug=False)
