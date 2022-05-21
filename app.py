@@ -68,9 +68,10 @@ class alunos(db.Model):
     def __repr__(self):
         return '<Aluno: %r>'%self.nome
 
-@app.route('/', methods=['GET','POST'])
+@app.route('/')
+@app.route('/index')
 def index():
-    return render_template('index.html',alunos=alunos.query.all())
+    return render_template('index.html')
 
 @app.route('/sobre')
 def sobre():
