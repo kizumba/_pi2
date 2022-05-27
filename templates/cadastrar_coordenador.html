@@ -6,13 +6,13 @@
         <div class="form-group">
             <!-- <label for="id">Digite o ID do coordenador</label>
             <input class="form-control" id="id" type="text" name="id" required> -->
-            <label for="nome">Digite o NOME do coordenador</label>
-            <input class="form-control" id="nome" type="text" name="nome" required>
-            <label for="senha">Digite a SENHA do coordenador</label>
-            <input class="form-control" id="senha" type="password" name="senha" required>
-            <label for="email">Digite a E-MAIL do coordenador</label>
-            <input class="form-control" id="email" type="text" name="email" required>
+            <label for="nome">Digite o nome do coordenador</label>
+            <input class="form-control" id="nome" type="text" name="nome" autofocus required aria-required="true">
+            <label for="senha">Digite a senha do coordenador</label>
+            <input class="form-control" id="senha" type="password" name="senha" required aria-required="true">
+            <label for="email">Digite a e-mail do coordenador</label>
+            <input class="form-control" id="email" type="text" name="email" required aria-required="true">
         </div>
-        <button class="btn btn-primary">Cadastrar</button>
+        <button class="btn btn-primary" aria-label="Confirmar cadastro de novo coordenador">Cadastrar</button>
     </form>
 {% endblock conteudo %}

@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 {% block conteudo %}
-    <h1 align="center">Atualizar Projeto</h1>
+    <h1 align="center">Atualizar dados do {{projeto.nome}}</h1>
     <hr>
     <form action="{{url_for('atualiza_projeto', id=projeto.id)}}" method="post">
         <div class="form-group">
             <label for="nome">Digite o NOME do Projeto</label>
-            <input class="form-control" id="nome" type="text" name="nome" value="{{projeto.nome}}" required>
+            <input class="form-control" id="nome" type="text" name="nome" value="{{projeto.nome}}" required aria-required="true" autofocus>
         </div>
-        <button class="btn btn-primary">Salvar</button>
+        <button class="btn btn-primary" aria-label="Confirmar a atualização dos dados do projeto">Salvar</button>
     </form>
 {% endblock conteudo %}

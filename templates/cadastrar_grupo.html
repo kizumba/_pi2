@@ -5,15 +5,15 @@
     <form action="{{url_for('cadastrar_grupo')}}" method="post">
         <div class="form-group">
             <label for="dia">Digite o dia da semana para reunião</label>
-            <input class="form-control" id="dia" type="text" name="dia" required>
+            <input class="form-control" id="dia" type="text" name="dia" required autofocus aria-required="true">
             <label for="hora">Digite a hora da reunião</label>
-            <input class="form-control" id="hora" type="text" name="hora" required>            
+            <input class="form-control" id="hora" type="text" name="hora" required aria-required="true">            
             
             <label for="projeto">Digite o número do projeto do grupo</label>
-            <input class="form-control" id="projeto" type="number" name="projeto" value="1" required>
+            <input class="form-control" id="projeto" type="number" name="projeto" value="1" required aria-required="true" aria-valuemin="1">
             <label for="coordenador">Digite o número do coordenador do grupo</label>
-            <input class="form-control" id="coordenador" type="number" name="coordenador" value="1" required>
+            <input class="form-control" id="coordenador" type="number" name="coordenador" value="1" required aria-required="true" aria-valuemin="1">
         </div>
-        <button class="btn btn-primary">Cadastrar</button>
+        <button class="btn btn-primary" aria-label="Confirmar o cadastro do novo grupo">Cadastrar</button>
     </form>
 {% endblock conteudo %}

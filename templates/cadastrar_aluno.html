@@ -1,30 +1,30 @@
 {% extends 'base.html' %}
 {% block conteudo %}
-    <h1 align="center">Cadastrar Aluno</h1>
+    <h1 align="center">Cadastrar novo aluno</h1>
     <hr>
     <form action="{{url_for('cadastrar_aluno')}}" method="post">
         <div class="form-group">
             <label for="nome">Digite o nome do aluno</label>
-            <input class="form-control" id="nome" type="text" name="nome" required>
+            <input class="form-control" id="nome" type="text" name="nome" autofocus required aria-required="true">
             <label for="senha">Digite a senha do aluno</label>
-            <input class="form-control" id="senha" type="password" name="senha" required>
+            <input class="form-control" id="senha" type="password" name="senha" required aria-required="true">
             <label for="curso">Digite o curso do aluno</label>
-            <input class="form-control" id="curso" type="text" name="curso" required>
+            <input class="form-control" id="curso" type="text" name="curso" required aria-required="true">
             <label for="polo">Digite o polo do aluno</label>
-            <input class="form-control" id="polo" type="text" name="polo" required>
-            <label for="projeto">Digite o Nº do projeto do aluno</label>
-            <input class="form-control" id="projeto" type="number" max="5" min="1" value="1" name="projeto" required>
+            <input class="form-control" id="polo" type="text" name="polo" required aria-required="true">
+            <label for="projeto">Digite o número do projeto do aluno</label>
+            <input class="form-control" id="projeto" type="number" max="5" min="1" value="1" name="projeto" required aria-required="true">
             <label for="grupo">Digite o número do grupo do aluno</label>
-            <input class="form-control" id="grupo" type="number" max="5" min="1" value="1" name="grupo" required>
+            <input class="form-control" id="grupo" type="number" max="5" min="1" value="1" name="grupo" required aria-required="true">
             <label for="interesse">Digite o interesse acadêmico do aluno</label>
-            <input class="form-control" id="interesse" type="text" name="interesse" required>
+            <input class="form-control" id="interesse" type="text" name="interesse" required aria-required="true">
             <label for="hobby">Digite o gosto pessoal do aluno</label>
-            <input class="form-control" id="hobby" type="text" name="hobby" required>
+            <input class="form-control" id="hobby" type="text" name="hobby" required aria-required="true">
             <label for="telefone">Digite o telefone do aluno</label>
-            <input class="form-control" id="telefone" type="text" name="telefone" required>
+            <input class="form-control" id="telefone" type="text" name="telefone" required aria-required="true">
             <label for="email">Digite o email do aluno</label>
-            <input class="form-control" id="email" type="text" name="email" required>
+            <input class="form-control" id="email" type="text" name="email" required aria-required="true">
         </div>
-        <button class="btn btn-primary">Cadastrar</button>
+        <button class="btn btn-primary" aria-label="Confirmar o cadastro do novo aluno">Cadastrar</button>
     </form>
 {% endblock conteudo %}

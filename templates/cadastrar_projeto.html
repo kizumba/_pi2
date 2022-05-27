@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 {% block conteudo %}
-    <h1 align="center">Cadastrar Projeto</h1>
+    <h1 align="center">Cadastrar novo projeto</h1>
     <hr>
     <form action="{{url_for('cadastrar_projeto')}}" method="post">
         <div class="form-group">
-            <label for="nome">Digite o NOME do Projeto</label>
-            <input class="form-control" id="nome" type="text" name="nome" required>
+            <label for="nome">Digite o nome do Projeto</label>
+            <input class="form-control" id="nome" type="text" name="nome" required autofocus aria-required="true">
         </div>
-        <button class="btn btn-primary">Cadastrar</button>
+        <button class="btn btn-primary" aria-label="Confirmar o cadastro do novo grupo">Cadastrar</button>
     </form>
 {% endblock conteudo %}

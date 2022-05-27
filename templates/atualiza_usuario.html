@@ -1,16 +1,16 @@
 {% extends 'base.html' %}
 {% block conteudo %}
-    <h1 align="center">Atualizar Usuário</h1>
+    <h1 align="center">Atualizar dados do usuário {{usuario.nome}}</h1>
     <hr>
     <form action="{{url_for('atualiza_usuario',id=usuario.id)}}" method="post">
         <div class="form-group">
-            <label for="nome">Digite o NOME do usuário</label>
-            <input class="form-control" id="nome" type="text" name="nome" value="{{usuario.nome}}" required>
-            <label for="senha">Digite a SENHA do usuário</label>
-            <input class="form-control" id="senha" type="password" name="senha" value="{{usuario.senha}}" required>
-            <label for="email">Digite a E-MAIL do usuário</label>
-            <input class="form-control" id="email" type="text" name="email" value="{{usuario.email}}" required>
+            <label for="nome">Digite o nome do usuário</label>
+            <input class="form-control" id="nome" type="text" name="nome" value="{{usuario.nome}}" required aria-required="true" autofocus>
+            <label for="senha">Digite a senha do usuário</label>
+            <input class="form-control" id="senha" type="password" name="senha" value="{{usuario.senha}}" required aria-required="true">
+            <label for="email">Digite a email do usuário</label>
+            <input class="form-control" id="email" type="text" name="email" value="{{usuario.email}}" required aria-required="true">
         </div>
-        <button class="btn btn-primary">Salvar</button>
+        <button class="btn btn-primary" aria-label="Confirmar a atualização dos dados do usuário">Salvar</button>
     </form>
 {% endblock conteudo %}

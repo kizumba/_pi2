@@ -1,30 +1,30 @@
 {% extends 'base.html' %}
 {% block conteudo %}
-    <h1 align="center">Atualizar Aluno</h1>
+    <h1 align="center">Atualizar dados de {{aluno.nome}}</h1>
     <hr>
     <form action="{{url_for('atualiza_aluno', ra=aluno.ra)}}" method="post">
         <div class="form-group">
             <label for="nome">Digite o nome do aluno</label>
-            <input class="form-control" id="nome" type="text" name="nome" value="{{aluno.nome}}" required>
+            <input class="form-control" id="nome" type="text" name="nome" value="{{aluno.nome}}" required autofocus aria-required="true">
             <label for="senha">Digite a senha do aluno</label>
-            <input class="form-control" id="senha" type="password" name="senha" value="{{aluno.senha}}" required>
+            <input class="form-control" id="senha" type="password" name="senha" value="{{aluno.senha}}" required aria-required="true">
             <label for="curso">Digite o curso do aluno</label>
-            <input class="form-control" id="curso" type="text" name="curso" value="{{aluno.curso}}" required>
+            <input class="form-control" id="curso" type="text" name="curso" value="{{aluno.curso}}" required aria-required="true">
             <label for="polo">Digite o polo do aluno</label>
-            <input class="form-control" id="polo" type="text" name="polo" value="{{aluno.polo}}" required>
-            <label for="projeto">Digite o Nº do projeto do aluno</label>
-            <input class="form-control" id="projeto" type="number" max="5" min="1"  name="projeto" value="{{aluno.projeto_id}}" required>
+            <input class="form-control" id="polo" type="text" name="polo" value="{{aluno.polo}}" required aria-required="true">
+            <label for="projeto">Digite o número do projeto do aluno</label>
+            <input class="form-control" id="projeto" type="number" max="5" min="1"  name="projeto" value="{{aluno.projeto_id}}" required aria-required="true">
             <label for="grupo">Digite o número do grupo do aluno</label>
-            <input class="form-control" id="grupo" type="number" max="5" min="1"  name="grupo" value="{{aluno.grupo_id}}" required>
+            <input class="form-control" id="grupo" type="number" max="5" min="1"  name="grupo" value="{{aluno.grupo_id}}" required aria-required="true">
             <label for="interesse">Digite o interesse acadêmico do aluno</label>
-            <input class="form-control" id="interesse" type="text" name="interesse" value="{{aluno.interesse}}" required>
+            <input class="form-control" id="interesse" type="text" name="interesse" value="{{aluno.interesse}}" required aria-required="true">
             <label for="hobby">Digite o gosto pessoal do aluno</label>
-            <input class="form-control" id="hobby" type="text" name="hobby" value="{{aluno.hobby}}" required>
+            <input class="form-control" id="hobby" type="text" name="hobby" value="{{aluno.hobby}}" required aria-required="true">
             <label for="telefone">Digite o telefone do aluno</label>
-            <input class="form-control" id="telefone" type="text" name="telefone" value="{{aluno.telefone}}" required>
+            <input class="form-control" id="telefone" type="text" name="telefone" value="{{aluno.telefone}}" required aria-required="true">
             <label for="email">Digite o email do aluno</label>
-            <input class="form-control" id="email" type="text" name="email" value="{{aluno.email}}" required>
+            <input class="form-control" id="email" type="text" name="email" value="{{aluno.email}}" required aria-required="true">
         </div>
-        <button class="btn btn-primary">Salvar</button>
+        <button class="btn btn-primary" aria-label="Confirmar a atualização dos dados do aluno">Salvar alterações</button>
     </form>
 {% endblock conteudo %}
