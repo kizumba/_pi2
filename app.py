@@ -419,18 +419,29 @@ def login():
     user = usuarios.query.filter_by(email=request.form.get('email')).first()
     if user and user.senha == request.form.get('senha'):        
         login_user(user)
-        flash('Usuário logado')
+        flash('Usuário conectado com sucesso!')
         return redirect(url_for('index'))
-    else:
-        flash('Usuário ou senha errados')
+    # else:
+    #     flash('Usuário ou senha errados!')
 
     return render_template('login.html')
 
 @app.route("/logout")
 def logout():
     logout_user()
+    flash('Usuário desconectado com sucesso!')
     return redirect(url_for('login'))
 
 if __name__=='__main__':
     db.create_all()
     app.run(debug=False)
+
+
+def create_app():
+    app = Flask(__name__)
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///projeto2.sqlite3'
+    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+    app.config['SECRET_KEY'] = 'teste$%#'
+
+    db = SQLAlchemy(app)
+    login_manager = LoginManager(app)
