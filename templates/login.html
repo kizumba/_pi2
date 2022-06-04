@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block conteudo %}
+    <h1 align="center">Login</h1>
+    <hr>
+    <form action="{{url_for('login')}}" method="post">
+        <div class="form-group">
+            <label for="email">Digite seu email</label>
+            <input class="form-control" id="email" type="text" name="email" required autofocus aria-required="true">
+            <label for="senha">Digite sua senha</label>
+            <input class="form-control" id="senha" type="password" name="senha" required autofocus aria-required="true">
+        </div>
+        <button class="btn btn-primary" aria-label="Confirmar informações e entrar">Entrar</button>
+    </form>
+{% endblock conteudo %}

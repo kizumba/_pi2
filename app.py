@@ -1,6 +1,7 @@
 from flask import Flask, redirect, render_template, request, url_for, flash
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import ForeignKey
+from flask_login import LoginManager, UserMixin, login_required, login_user, logout_user
 
 
 app = Flask(__name__)
@@ -9,14 +10,29 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = 'teste$%#'
 
 db = SQLAlchemy(app)
+login_manager = LoginManager(app)
 
 
-class usuarios(db.Model):
+class usuarios(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     nome = db.Column(db.String(50))
     email = db.Column(db.String(50))
     senha = db.Column(db.String(50))
     tipo_usuario = db.Column(db.String(20))
+
+    #Flask Login
+    # @property
+    # def is_authenticated(self):
+    #     return True
+    # @property
+    # def is_active(self):
+    #     return True
+    # @property
+    # def is_anonymous(self):
+    #     return False
+    # @property
+    # def get_id(self):
+    #     return str(self.id)
 
     def __repr__(self):
         return '<Adm %r>'%self.nome
@@ -36,6 +52,20 @@ class coordenadores(db.Model):
     tipo_usuario = db.Column(db.String(20))
 
     grupos = db.relationship('grupos', backref='coordenadores', lazy=True)
+
+    #Flask Login
+    # @property
+    # def is_authenticated(self):
+    #     return True
+    # @property
+    # def is_active(self):
+    #     return True
+    # @property
+    # def is_anonymous(self):
+    #     return False
+    # @property
+    # def get_id(self):
+    #     return str(self.id)
 
     def __repr__(self):
         return '<Coordenador %r>'%self.nome
@@ -67,11 +97,27 @@ class alunos(db.Model):
     projeto_id = db.Column(db.Integer, ForeignKey('projetos.id'))
     grupo_id = db.Column(db.Integer, ForeignKey('grupos.id'))
 
+    #Flask Login
+    # @property
+    # def is_authenticated(self):
+    #     return True
+    # @property
+    # def is_active(self):
+    #     return True
+    # @property
+    # def is_anonymous(self):
+    #     return False
+    # @property
+    # def get_id(self):
+    #     return str(self.id)
+
     def __repr__(self):
         return '<Aluno: %r>'%self.nome
 
+
 @app.route('/')
 @app.route('/index')
+# @login_required
 def index():
     return render_template('index.html')
 
@@ -81,6 +127,8 @@ def sobre():
 
 # CADASTRAR ALUNOS
 @app.route('/cadastrar_aluno', methods=['GET','POST'])
+@login_required
+
 def cadastrar_aluno():    
     aluno = alunos()
     if request.method == 'POST':
@@ -104,6 +152,8 @@ def cadastrar_aluno():
 
 # ATUALIZAR ALUNOS
 @app.route('/<int:ra>/atualiza_aluno', methods=['GET','POST'])
+@login_required
+
 def atualiza_aluno(ra):
     aluno = alunos.query.filter_by(ra=ra).first()
     if request.method == 'POST':
@@ -131,6 +181,8 @@ def atualiza_aluno(ra):
 
 #EXCLUIR ALUNO
 @app.route('/<int:ra>/excluir_aluno')
+@login_required
+
 def excluir_aluno(ra):
     aluno = alunos.query.filter_by(ra=ra).first()
     db.session.delete(aluno)
@@ -140,12 +192,16 @@ def excluir_aluno(ra):
 
 #LISTAR ALUNOS
 @app.route('/lista_alunos')
+@login_required
+
 def lista_alunos():
     return render_template('lista_alunos.html', alunos=alunos.query.all())
 
 
 #GRUPOS
 @app.route('/cadastrar_grupo', methods=['GET','POST'])
+@login_required
+
 def cadastrar_grupo():
     grupo = grupos()
     if request.method == 'POST':
@@ -162,6 +218,8 @@ def cadastrar_grupo():
     return render_template('cadastrar_grupo.html')
 
 @app.route('/<int:id>/atualiza_grupo', methods=['GET','POST'])
+@login_required
+
 def atualiza_grupo(id):
     grupo = grupos.query.filter_by(id=id).first()
 
@@ -180,6 +238,8 @@ def atualiza_grupo(id):
     return render_template('atualiza_grupo.html', grupo=grupo)
 
 @app.route('/<int:id>/excluir_grupo')
+@login_required
+
 def excluir_grupo(id):
     grupo = grupos.query.filter_by(id=id).first()
     db.session.delete(grupo)
@@ -189,12 +249,16 @@ def excluir_grupo(id):
 
 #LISTAR GRUPOS
 @app.route('/lista_grupos')
+@login_required
+
 def lista_grupos():
     lista_grupos = grupos.query.all()
     return render_template('lista_grupos.html', grupos=lista_grupos)
 
 #COORDENADORES
 @app.route('/cadastrar_coordenador', methods=['GET','POST'])
+@login_required
+
 def cadastrar_coordenador():
     coordenador = coordenadores()
     if request.method == 'POST':
@@ -211,6 +275,8 @@ def cadastrar_coordenador():
     return render_template('cadastrar_coordenador.html')
 
 @app.route('/<int:id>/atualiza_coordenador', methods=['GET', 'POST'])
+@login_required
+
 def atualiza_coordenador(id):
     coordenador = coordenadores.query.filter_by(id=id).first()
 
@@ -228,6 +294,8 @@ def atualiza_coordenador(id):
 
 #EXCLUIR COORDENADOR
 @app.route('/<int:id>/excluir_coordenador')
+@login_required
+
 def excluir_coordenador(id):
     coordenador = coordenadores.query.filter_by(id=id).first()
     db.session.delete(coordenador)
@@ -236,12 +304,16 @@ def excluir_coordenador(id):
     return redirect(url_for('lista_coordenadores'))
 
 @app.route('/lista_coordenadores')
+@login_required
+
 def lista_coordenadores():
     lista_coordenadores = coordenadores.query.all()
     return render_template('lista_coordenadores.html', coordenadores=lista_coordenadores)
 
 #USUÁRIOS
 @app.route('/cadastrar_usuario', methods=['GET','POST'])
+@login_required
+
 def cadastrar_usuario():
     user = usuarios()
     if request.method == 'POST':
@@ -258,6 +330,8 @@ def cadastrar_usuario():
     return render_template('cadastrar_usuario.html')
 
 @app.route('/<int:id>/atualiza_usuario', methods=['GET','POST'])
+@login_required
+
 def atualiza_usuario(id):
     usuario = usuarios.query.filter_by(id=id).first()
 
@@ -273,6 +347,8 @@ def atualiza_usuario(id):
     return render_template('atualiza_usuario.html', usuario=usuario)
 
 @app.route('/<int:id>/excluir_usuario')
+@login_required
+
 def excluir_usuario(id):
     usuario = usuarios.query.filter_by(id=id).first()
     db.session.delete(usuario)
@@ -281,11 +357,15 @@ def excluir_usuario(id):
     return redirect(url_for('lista_usuarios')) 
 
 @app.route('/lista_usuarios')
+@login_required
+
 def lista_usuarios():
     return render_template('lista_usuarios.html', usuarios=usuarios.query.all())
 
 # PROJETOS CRUD
 @app.route('/cadastrar_projeto', methods=['GET','POST'])
+@login_required
+
 def cadastrar_projeto():
     projeto = projetos()
     if request.method == 'POST':
@@ -299,6 +379,8 @@ def cadastrar_projeto():
     return render_template('cadastrar_projeto.html')
 
 @app.route('/<int:id>/atualiza_projeto', methods=['GET','POST'])
+@login_required
+
 def atualiza_projeto(id):
     projeto = projetos.query.filter_by(id=id).first()
 
@@ -312,6 +394,8 @@ def atualiza_projeto(id):
     return render_template('atualiza_projeto.html', projeto=projeto)
 
 @app.route('/<int:id>/excluir_projeto')
+@login_required
+
 def excluir_projeto(id):
     projeto = projetos.query.filter_by(id=id).first()
     db.session.delete(projeto)
@@ -320,19 +404,32 @@ def excluir_projeto(id):
     return redirect(url_for('lista_projetos')) 
 
 @app.route('/lista_projetos')
+@login_required
+
 def lista_projetos():
     return render_template('lista_projetos.html', projetos=projetos.query.all())
 
 # LOGIN E LOGOUT
-@app.route('/entrar', methods=['GET', 'POST'])
-def entrar():
-    if request.method == 'POST':
-        pass
-    return render_template('entrar.html')
+@login_manager.user_loader
+def load_user(user_id):
+    return usuarios.query.get(user_id)
 
-@app.route('/sair')
-def sair():
-    return render_template('sair.html')
+@app.route('/login', methods=['GET','POST'])
+def login():
+    user = usuarios.query.filter_by(email=request.form.get('email')).first()
+    if user and user.senha == request.form.get('senha'):        
+        login_user(user)
+        flash('Usuário logado')
+        return redirect(url_for('index'))
+    else:
+        flash('Usuário ou senha errados')
+
+    return render_template('login.html')
+
+@app.route("/logout")
+def logout():
+    logout_user()
+    return redirect(url_for('login'))
 
 if __name__=='__main__':
     db.create_all()
