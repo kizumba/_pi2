@@ -20,20 +20,6 @@ class usuarios(db.Model, UserMixin):
     senha = db.Column(db.String(50))
     tipo_usuario = db.Column(db.String(20))
 
-    #Flask Login
-    # @property
-    # def is_authenticated(self):
-    #     return True
-    # @property
-    # def is_active(self):
-    #     return True
-    # @property
-    # def is_anonymous(self):
-    #     return False
-    # @property
-    # def get_id(self):
-    #     return str(self.id)
-
     def __repr__(self):
         return '<Adm %r>'%self.nome
 
@@ -52,20 +38,6 @@ class coordenadores(db.Model):
     tipo_usuario = db.Column(db.String(20))
 
     grupos = db.relationship('grupos', backref='coordenadores', lazy=True)
-
-    #Flask Login
-    # @property
-    # def is_authenticated(self):
-    #     return True
-    # @property
-    # def is_active(self):
-    #     return True
-    # @property
-    # def is_anonymous(self):
-    #     return False
-    # @property
-    # def get_id(self):
-    #     return str(self.id)
 
     def __repr__(self):
         return '<Coordenador %r>'%self.nome
@@ -96,20 +68,6 @@ class alunos(db.Model):
 
     projeto_id = db.Column(db.Integer, ForeignKey('projetos.id'))
     grupo_id = db.Column(db.Integer, ForeignKey('grupos.id'))
-
-    #Flask Login
-    # @property
-    # def is_authenticated(self):
-    #     return True
-    # @property
-    # def is_active(self):
-    #     return True
-    # @property
-    # def is_anonymous(self):
-    #     return False
-    # @property
-    # def get_id(self):
-    #     return str(self.id)
 
     def __repr__(self):
         return '<Aluno: %r>'%self.nome
@@ -312,7 +270,7 @@ def lista_coordenadores():
 
 #USUÁRIOS
 @app.route('/cadastrar_usuario', methods=['GET','POST'])
-@login_required
+# @login_required
 
 def cadastrar_usuario():
     user = usuarios()
@@ -330,7 +288,7 @@ def cadastrar_usuario():
     return render_template('cadastrar_usuario.html')
 
 @app.route('/<int:id>/atualiza_usuario', methods=['GET','POST'])
-@login_required
+# @login_required
 
 def atualiza_usuario(id):
     usuario = usuarios.query.filter_by(id=id).first()
@@ -347,7 +305,7 @@ def atualiza_usuario(id):
     return render_template('atualiza_usuario.html', usuario=usuario)
 
 @app.route('/<int:id>/excluir_usuario')
-@login_required
+# @login_required
 
 def excluir_usuario(id):
     usuario = usuarios.query.filter_by(id=id).first()
@@ -357,7 +315,7 @@ def excluir_usuario(id):
     return redirect(url_for('lista_usuarios')) 
 
 @app.route('/lista_usuarios')
-@login_required
+# @login_required
 
 def lista_usuarios():
     return render_template('lista_usuarios.html', usuarios=usuarios.query.all())
@@ -420,7 +378,7 @@ def login():
     if user and user.senha == request.form.get('senha'):        
         login_user(user)
         flash('Usuário conectado com sucesso!')
-        return redirect(url_for('index'))
+        return redirect(url_for('index')) 
     # else:
     #     flash('Usuário ou senha errados!')
 
@@ -431,6 +389,67 @@ def logout():
     logout_user()
     flash('Usuário desconectado com sucesso!')
     return redirect(url_for('login'))
+
+#BUSCAR ALUNOS FUNÇÃO PRINCIPAL
+@app.route('/buscar_alunos')
+def buscar_alunos():
+    aluno_teste = {
+        "nome":"Aluno Teste",
+        "curso":"Engenharia da Computação",
+        "polo":"Santa Isabel",
+        "interesse":"Banco de Dados",
+        "hobby":"Futebol"
+    }
+    integrantes = alunos.query.all()
+    return render_template('buscar_alunos.html', integrantes=integrantes, aluno_teste=aluno_teste)
+
+@app.route('/busca_por_curso', methods=['GET','POST'])
+def busca_por_curso():
+    aluno_teste = {
+        "nome":"Aluno Teste",
+        "curso":"Engenharia da Computação",
+        "polo":"Santa Isabel",
+        "interesse":"Banco de Dados",
+        "hobby":"Futebol"
+    }
+    integrantes = alunos.query.filter_by(curso=aluno_teste['curso'])
+    return render_template('busca_por_curso.html', integrantes=integrantes)
+
+@app.route('/busca_por_polo', methods=['GET','POST'])
+def busca_por_polo():
+    aluno_teste = {
+        "nome":"Aluno Teste",
+        "curso":"Engenharia da Computação",
+        "polo":"Santa Isabel",
+        "interesse":"Banco de Dados",
+        "hobby":"Futebol"
+    }
+    integrantes = alunos.query.filter_by(polo=aluno_teste['polo'])
+    return render_template('busca_por_polo.html', integrantes=integrantes)
+
+@app.route('/busca_por_interesse', methods=['GET','POST'])
+def busca_por_interesse():
+    aluno_teste = {
+        "nome":"Aluno Teste",
+        "curso":"Engenharia da Computação",
+        "polo":"Santa Isabel",
+        "interesse":"Banco de Dados",
+        "hobby":"Futebol"
+    }
+    integrantes = alunos.query.filter_by(interesse=aluno_teste['interesse'])
+    return render_template('busca_por_interesse.html', integrantes=integrantes)
+
+@app.route('/busca_por_hobby', methods=['GET','POST'])
+def busca_por_hobby():
+    aluno_teste = {
+        "nome":"Aluno Teste",
+        "curso":"Engenharia da Computação",
+        "polo":"Santa Isabel",
+        "interesse":"Banco de Dados",
+        "hobby":"Futebol"
+    }
+    integrantes = alunos.query.filter_by(hobby=aluno_teste['hobby'])
+    return render_template('busca_por_hobby.html', integrantes=integrantes)
 
 if __name__=='__main__':
     db.create_all()

@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block conteudo %}
+    <h1 align="center">Buscar por integrantes</h1><hr>
+    <p>Aluno de Teste</p>
+    <strong>Nome:</strong> {{aluno_teste.nome}} 
+    <strong>Curso:</strong> {{aluno_teste.curso}} 
+    <strong>Polo:</strong> {{aluno_teste.polo}}
+    <strong>Interesse:</strong> {{aluno_teste.interesse}} 
+    <strong>Hobby:</strong> {{aluno_teste.hobby}}
+    <hr>
+    <table class="table table-bordered table-hover">
+        <thead class="table-dark">
+            <!-- <th scope="col">RA</th> -->
+            <th scope="col">Nome</th>
+            <th scope="col"><a href="{{url_for('busca_por_curso')}}">Curso</a></th>
+            <th scope="col"><a href="{{url_for('busca_por_polo')}}">Polo</a></th>
+            <th scope="col"><a href="{{url_for('busca_por_interesse')}}">Interesse</a></th>
+            <th scope="col"><a href="{{url_for('busca_por_hobby')}}">Hobby</a></th>
+        </thead>
+        <tbody>
+            {% for aluno in integrantes %}
+                <tr>
+                    <!-- <td>{{aluno.ra}}</td> -->
+                    <td>{{aluno.nome}}</td>
+                    <td>{{aluno.curso}}</td>
+                    <td>{{aluno.polo}}</td>
+                    <td>{{aluno.interesse}}</td>
+                    <td>{{aluno.hobby}}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock conteudo %}

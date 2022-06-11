@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block conteudo %}
+    <h1 align="center">Busca de alunos por Curso</h1>
+    <table class="table table-bordered table-hover">
+        <thead class="table-dark">
+            <th scope="col">Curso</th>
+            <th scope="col">Nome</th>
+            
+            <th scope="col">Polo</th>
+            <th scope="col">Interesse</th>
+            <th scope="col">Hobby</th>
+            <th scope="col">Email</th>
+        </thead>
+        <tbody>
+            {% for aluno in integrantes %}
+                <tr>
+                    <td><strong>{{aluno.curso}}</strong></td>
+                    <td>{{aluno.nome}}</td>
+                    
+                    <td>{{aluno.polo}}</td>
+                    <td>{{aluno.interesse}}</td>
+                    <td>{{aluno.hobby}}</td>
+                    <td>{{aluno.email}}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{{url_for('buscar_alunos')}}">Voltar</a>
+{% endblock conteudo %}
