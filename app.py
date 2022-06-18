@@ -75,7 +75,7 @@ class alunos(db.Model):
 
 @app.route('/')
 @app.route('/index')
-# @login_required
+#@login_required
 def index():
     return render_template('index.html')
 
@@ -270,7 +270,7 @@ def lista_coordenadores():
 
 #USUÁRIOS
 @app.route('/cadastrar_usuario', methods=['GET','POST'])
-# @login_required
+@login_required
 
 def cadastrar_usuario():
     user = usuarios()
@@ -288,7 +288,7 @@ def cadastrar_usuario():
     return render_template('cadastrar_usuario.html')
 
 @app.route('/<int:id>/atualiza_usuario', methods=['GET','POST'])
-# @login_required
+@login_required
 
 def atualiza_usuario(id):
     usuario = usuarios.query.filter_by(id=id).first()
@@ -305,7 +305,7 @@ def atualiza_usuario(id):
     return render_template('atualiza_usuario.html', usuario=usuario)
 
 @app.route('/<int:id>/excluir_usuario')
-# @login_required
+@login_required
 
 def excluir_usuario(id):
     usuario = usuarios.query.filter_by(id=id).first()
@@ -315,7 +315,7 @@ def excluir_usuario(id):
     return redirect(url_for('lista_usuarios')) 
 
 @app.route('/lista_usuarios')
-# @login_required
+@login_required
 
 def lista_usuarios():
     return render_template('lista_usuarios.html', usuarios=usuarios.query.all())
