@@ -268,7 +268,9 @@ def lista_coordenadores():
     lista_coordenadores = coordenadores.query.all()
     return render_template('lista_coordenadores.html', coordenadores=lista_coordenadores)
 
-#USUÁRIOS
+##################
+#### USUÁRIOS ####
+##################
 @app.route('/cadastrar_usuario', methods=['GET','POST'])
 @login_required
 
@@ -442,7 +444,7 @@ def busca_por_interesse():
 @app.route('/busca_por_hobby', methods=['GET','POST'])
 def busca_por_hobby():
     aluno_teste = {
-        "nome":"Aluno Teste",
+        "nome":"GEORGE WASHINGTON",
         "curso":"Engenharia da Computação",
         "polo":"Santa Isabel",
         "interesse":"Banco de Dados",
